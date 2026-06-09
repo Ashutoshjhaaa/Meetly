@@ -1,0 +1,194 @@
+/* ─── Meetly × LiveKit theme override ───────────────────────────────────────
+   Loaded after @livekit/components-styles in app/layout.tsx.
+   Every --lk-* var here overrides the default blue LiveKit theme.
+   data-lk-theme="default" must stay on <body> — do not remove it.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[data-lk-theme="default"] {
+
+  /* ── Backgrounds ── */
+  --lk-bg:  #0a0a0a;          /* room background — matches landing page */
+  --lk-bg2: #111111;          /* tile / control surface */
+  --lk-bg3: #1a1a1a;          /* hover state */
+  --lk-bg4: #222222;          /* active state */
+  --lk-bg5: #2a2a2a;          /* active hover */
+
+  /* ── Foregrounds ── */
+  --lk-fg:  #fafafa;
+  --lk-fg2: rgba(250,250,250,0.85);
+  --lk-fg3: rgba(250,250,250,0.65);
+  --lk-fg4: rgba(250,250,250,0.45);
+  --lk-fg5: rgba(250,250,250,0.30);
+
+  /* ── Border ── */
+  --lk-border-color: rgba(255, 255, 255, 0.08);
+
+  /* ── Accent — white instead of LiveKit blue ── */
+  --lk-accent-fg:  #0a0a0a;        /* text on accent buttons */
+  --lk-accent-bg:  #fafafa;        /* accent button fill */
+  --lk-accent2:    rgba(250,250,250,0.85);
+  --lk-accent3:    rgba(250,250,250,0.70);
+  --lk-accent4:    rgba(250,250,250,0.55);
+
+  /* ── Danger — keep red, just soften it ── */
+  --lk-danger-fg: #fff;
+  --lk-danger:    #e53e3e;
+  --lk-danger2:   rgba(229,62,62,0.85);
+  --lk-danger3:   rgba(229,62,62,0.70);
+  --lk-danger4:   rgba(229,62,62,0.55);
+
+  /* ── Success ── */
+  --lk-success-fg: #fff;
+  --lk-success:    #38a169;
+  --lk-success2:   rgba(56,161,105,0.85);
+  --lk-success3:   rgba(56,161,105,0.70);
+  --lk-success4:   rgba(56,161,105,0.55);
+
+  /* ── Controls (toolbar buttons) ── */
+  --lk-control-fg:              #fafafa;
+  --lk-control-bg:              #111111;
+  --lk-control-hover-bg:        #1a1a1a;
+  --lk-control-active-bg:       #fafafa;
+  --lk-control-active-hover-bg: rgba(250,250,250,0.85);
+
+  /* ── Connection quality ── */
+  --lk-connection-excellent: #38a169;
+  --lk-connection-good:      #d69e2e;
+  --lk-connection-poor:      #e53e3e;
+
+  /* ── Typography ── */
+  --lk-font-family:  'Geist', system-ui, -apple-system, sans-serif;
+  --lk-font-size:    14px;
+  --lk-line-height:  1.5;
+
+  /* ── Shape ── */
+  --lk-border-radius: 2px;       /* sharp corners — matches landing page */
+  --lk-box-shadow:    0 4px 24px rgba(0,0,0,0.6);
+  --lk-drop-shadow:   rgba(255,255,255,0.06) 0px 0px 24px;
+
+  /* ── Layout ── */
+  --lk-grid-gap:          4px;
+  --lk-control-bar-height: 64px;
+  --lk-chat-header-height: 64px;
+}
+
+/* ─── Prejoin Overrides ─────────────────────────────────────────────────── */
+.lk-prejoin {
+  background-color: transparent !important;
+}
+
+.lk-prejoin input,
+.lk-prejoin select,
+.lk-prejoin .lk-button:not(.lk-button-primary) {
+  background-color: #111 !important;
+  color: #fafafa !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0px !important;
+  font-family: var(--lk-font-family) !important;
+  font-size: 13px !important;
+  padding: 12px 16px !important;
+  transition: border-color 0.2s ease !important;
+}
+
+.lk-prejoin input:focus,
+.lk-prejoin select:focus {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  outline: none !important;
+}
+
+.lk-prejoin .lk-button-primary {
+  background-color: #fafafa !important;
+  color: #0a0a0a !important;
+  border: none !important;
+  border-radius: 0px !important;
+  font-weight: 500 !important;
+  font-family: var(--lk-font-family) !important;
+  text-transform: none !important;
+  height: 48px !important;
+  margin-top: 16px !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.lk-prejoin .lk-button-primary:hover {
+  opacity: 0.9 !important;
+}
+
+/* Fix for select dropdown arrows */
+.lk-prejoin select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-position: right 12px center !important;
+  background-repeat: no-repeat !important;
+  background-size: 16px !important;
+  padding-right: 40px !important;
+  appearance: none !important;
+}
+
+/* ─── Control Bar Overrides ─────────────────────────────────────────────── */
+.lk-control-bar {
+  background-color: #0a0a0a !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 12px !important;
+}
+
+.lk-control-bar .lk-button,
+.lk-button-group-container .lk-button {
+  background-color: #111 !important;
+  color: #fafafa !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 2px !important;
+  transition: all 0.2s ease !important;
+}
+
+.lk-control-bar .lk-button:hover:not(:disabled),
+.lk-button-group-container .lk-button:hover:not(:disabled) {
+  background-color: #1a1a1a !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Active states (e.g. Mic ON, Camera ON) */
+.lk-control-bar .lk-button[data-lk-active="true"],
+.lk-button-group-container .lk-button[data-lk-active="true"] {
+  background-color: #fafafa !important;
+  color: #0a0a0a !important;
+  border-color: #fafafa !important;
+}
+
+/* Specific fix for dropdown arrows in button groups */
+.lk-button-group-container .lk-button-group-menu-button {
+  border-left: none !important;
+  margin-left: -1px !important;
+}
+
+/* Disconnect button override */
+.lk-disconnect-button {
+  border-color: rgba(229, 62, 62, 0.4) !important;
+  color: #e53e3e !important;
+  background-color: transparent !important;
+}
+
+.lk-disconnect-button:hover {
+  background-color: rgba(229, 62, 62, 0.1) !important;
+  border-color: #e53e3e !important;
+}
+
+/* Global lk-button active / pressed overrides */
+.lk-button[aria-pressed="true"],
+.lk-button[data-lk-active="true"] {
+  background-color: #fafafa !important;
+  color: #0a0a0a !important;
+  border-color: #fafafa !important;
+}
+
+.lk-button[aria-pressed="true"]:hover,
+.lk-button[data-lk-active="true"]:hover {
+  background-color: rgba(250, 250, 250, 0.85) !important;
+  color: #0a0a0a !important;
+}
+
+/* Ensure nested elements (text, svg, spans) inside active buttons also inherit the dark color */
+.lk-button[aria-pressed="true"] *,
+.lk-button[data-lk-active="true"] * {
+  color: #0a0a0a !important;
+  fill: currentColor !important;
+}
+
