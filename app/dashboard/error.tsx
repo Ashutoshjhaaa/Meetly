@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function DashboardError({
   error,
@@ -33,13 +34,13 @@ export default function DashboardError({
             Retry
           </button>
           
-           <a href="/"
+           <Link href="/"
             className="border border-white/12 px-5 py-2.5 font-mono
                        text-[12px] text-white/40 hover:text-white
                        hover:bg-white/5 transition-colors"
           >
             Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>

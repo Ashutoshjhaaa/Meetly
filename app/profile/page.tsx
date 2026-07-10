@@ -211,7 +211,7 @@ export default function ProfilePage() {
 
               {!devicesLoaded && (
                 <p className="font-mono text-[12px] text-white/20">
-                  Click "Detect devices" above to load your mic and camera options.
+                  Click &quot;Detect devices&quot; above to load your mic and camera options.
                   Browser will ask for permission.
                 </p>
               )}
@@ -319,7 +319,7 @@ export default function ProfilePage() {
               <div>
                 <p className="text-[13px] text-white/60">Sign out of Meetly</p>
                 <p className="font-mono text-[11px] text-white/20 mt-1">
-                  You'll need to sign in again with Google
+                  You&apos;ll need to sign in again with Google
                 </p>
               </div>
               <button

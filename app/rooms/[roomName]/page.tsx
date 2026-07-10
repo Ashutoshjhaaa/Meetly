@@ -59,7 +59,7 @@ export default async function Page({
         <div className="text-center flex flex-col items-center gap-4">
           <div className="text-5xl">⏰</div>
           <h1 className="text-2xl font-semibold text-white">
-            Meeting hasn't started yet
+            Meeting hasn&apos;t started yet
           </h1>
           {scheduledMeeting.title && (
             <p className="text-lg text-white/70">{scheduledMeeting.title}</p>

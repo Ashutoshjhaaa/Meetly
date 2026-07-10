@@ -112,7 +112,7 @@ export function SearchBar() {
         <div className="absolute z-50 top-full mt-2 w-full
                         bg-gray-900 border border-gray-700 rounded-xl
                         shadow-2xl px-4 py-6 text-center">
-          <p className="text-sm text-gray-500">No summaries found for "{query}"</p>
+          <p className="text-sm text-gray-500">No summaries found for &quot;{query}&quot;</p>
         </div>
       )}
     </div>

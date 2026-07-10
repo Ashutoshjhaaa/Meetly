@@ -1,9 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySignatureAppRouter } from '@upstash/qstash/nextjs';
+import { Receiver } from '@upstash/qstash';
 import { prisma } from '@/lib/prisma';
 
-async function handler(req: NextRequest) {
+export async function POST(req: NextRequest) {
+    // Lazily verify QStash signature only at request time (not build time)
+    const currentSigningKey = process.env.QSTASH_CURRENT_SIGNING_KEY;
+    const nextSigningKey = process.env.QSTASH_NEXT_SIGNING_KEY;
+
+    if (currentSigningKey && nextSigningKey) {
+        const receiver = new Receiver({ currentSigningKey, nextSigningKey });
+        const signature = req.headers.get('upstash-signature') ?? '';
+        const bodyText = await req.text();
+
+        const isValid = await receiver.verify({ signature, body: bodyText }).catch(() => false);
+        if (!isValid) {
+            return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+        }
+
+        // Re-parse body since we consumed it as text above
+        return handler(JSON.parse(bodyText));
+    }
+
+    // In local dev (no QStash keys), skip verification
     const body = await req.json();
+    return handler(body);
+}
+
+async function handler(body: { meetingId?: string; recordingUrl?: string }) {
     const { meetingId, recordingUrl } = body;
 
     if (!meetingId || !recordingUrl) {
@@ -127,6 +150,3 @@ No markdown, no backticks, no extra text. Pure JSON only.`,
         return NextResponse.json({ error: 'Job failed' }, { status: 500 });
     }
 }
-
-// Verifies the request genuinely came from QStash — not a random POST
-export const POST = verifySignatureAppRouter(handler);
