@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
 
 const { auth } = NextAuth(authConfig);
 
-export const proxy = auth((req) => {
+export default auth((req) => {
   const { nextUrl, auth: session } = req;
   const isLoggedIn = !!session?.user;
 
