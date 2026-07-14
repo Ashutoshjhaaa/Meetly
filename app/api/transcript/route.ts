@@ -3,20 +3,22 @@ import { WebhookReceiver } from 'livekit-server-sdk';
 import { prisma } from '@/lib/prisma';
 import { qstash } from '@/lib/qstash';
 
-const receiver = new WebhookReceiver(
-    process.env.LIVEKIT_API_KEY!,
-    process.env.LIVEKIT_API_SECRET!,
-);
-
 export async function POST(req: NextRequest) {
     const body = await req.text();
     const authHeader = req.headers.get('Authorization') ?? '';
+
+    // Instantiated lazily so env vars are only read at request time, not build time
+    const receiver = new WebhookReceiver(
+        process.env.LIVEKIT_API_KEY!,
+        process.env.LIVEKIT_API_SECRET!,
+    );
 
     let event: Awaited<ReturnType<typeof receiver.receive>>;
 
     // ── Verify this request genuinely came from LiveKit ──────────────────────
     try {
         event = await receiver.receive(body, authHeader);
+
     } catch (err) {
         console.error('LiveKit webhook verification failed:', err);
         return new NextResponse('Unauthorized', { status: 401 });
