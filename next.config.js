@@ -12,13 +12,7 @@ const nextConfig = {
       test: /\.mjs$/,
       enforce: 'pre',
       use: ['source-map-loader'],
-      exclude: /node_modules\/@mediapipe/,
     });
-
-    // Suppress "Failed to parse source map" warnings from packages that don't ship .map files
-    config.ignoreWarnings = [
-      { module: /@mediapipe\/tasks-vision/ },
-    ];
 
     return config;
   },
